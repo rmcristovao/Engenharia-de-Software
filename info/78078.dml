@@ -1,0 +1,114 @@
+package pt.tecnico.projeto.domain;
+
+class Manager;
+
+class FileSystem;
+
+class Session;
+
+class User{
+	String username;
+	String password;
+	String name;
+	String mask;
+	String dir;
+}
+
+class File{
+	String name;
+	int id;
+	String permissions;
+}
+
+class PlainFile extends File{
+	String text;
+}
+
+class Dir extends File;
+
+class PlainFile extends File;
+
+class Link extends PlainFile;
+
+relation DomainRootHasManagerApplication {
+  .pt.ist.fenixframework.DomainRoot playsRole root {
+    multiplicity 0..1;
+  }
+  Manager playsRole manager {
+    multiplicity 0..1;
+  }
+}
+
+relation ManagerContainsUser{
+	Manager playsRole manager;
+	User playsRole user{
+		multiplicity *;
+	}
+}
+
+relation ManagerContainsSession{
+	Manager playsRole manager;
+	Session playsRole session{
+		multiplicity *;
+	}
+}
+
+relation FileSystemContainsFile{
+	FileSystem playsRole fileSystem;
+	File playsRole file{
+		multiplicity *;
+	}
+}
+
+relation SessionContainsUser{
+	Session playsRole session{
+    multiplicity 0..1;
+  }
+	User playsRole user{
+    multiplicity 0..1;
+  }
+}
+
+relation ManagerContainsFileSystem{
+	Manager playsRole manager{
+    multiplicity 0..1;
+  }
+	FileSystem playsRole fileSystem{
+    multiplicity 0..1;
+  }
+}
+
+relation UserContainsFile{
+	User playsRole user;
+	File playsRole file{
+		multiplicity *;
+	}
+}
+
+relation FileContainsPlainFile{
+	File playsRole file;
+	PLainFile playsRole plainfile{
+		multiplicity *;
+	}
+}
+
+relation FileContainsDir{
+	File playsRole file;
+	Dir playsRole dir{
+		multiplicity *;
+	}
+}
+
+relation PlainFileContainsLink{
+	plainfile playsRole plainfile;
+	link playsRole link{
+		multiplicity *;
+	}
+}
+
+relation PlainFileContainsApp{
+	PlainFile playsRole plainfile;
+	App playsRole app{
+		multiplicity *;
+	}
+}

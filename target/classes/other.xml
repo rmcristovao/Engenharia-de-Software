@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<myDrive>
+  <user username="margaridamorais">
+    <password>margaridamorais</password>
+    <name>Margarida Guerreiro Morais</name>
+    <home>/home/margaridamorais</home>
+    <mask>rwxdr-x-</mask>
+  </user>
+  <user username="raquelcristovao">
+    <password>bonitinha</password>"
+    <name>Raquel Cristovao</name>"
+    <home>/home/raquelcristovao</home>"
+    <mask>rwxdr-x-</mask>"
+  </user>"
+  <user username="brunompl">
+    <password>brunompl</password>
+    <name>Bruno Lampreia</name>
+    <home>/home/brunompl</home>
+    <mask>rwxdr-x-</mask>
+  </user>
+  <user username="diogogoncas">
+    <password>diogogoncas</password>
+    <name>Diogo Goncalves</name>
+    <home>/home/diogogoncas</home>
+    <mask>rwxdr-x-</mask>
+  </user>
+  <user username="anasilva2">
+    <password>anasilva2</password>
+    <name>Ana Silva</name>
+    <home>/home/anasilva2</home>
+    <mask>rwxdr-x-</mask>
+  </user>
+  <user username="leonorclem">
+    <password>leonorclem</password>
+    <name>Leonor Clemente</name>
+    <home>/home/leonorclem</home>
+    <mask>rwxdr-x-</mask>
+  </user>
+  <plain id="3">
+    <path>/home/margaridamorais</path>
+    <name>profile</name>
+    <owner>margaridamorais</owner>
+    <perm>rw-dr---</perm>
+    <contents>Olá eu sou a Margarida</contents>
+  </plain>
+  <plain id="4">
+    <path>/home/raquelcristovao</path>
+    <name>profile</name>
+    <owner>raquelcristovao</owner>
+    <perm>rwxdr-x-</perm>
+    <contents>Olá eu sou a Raquel</contents>
+  </plain>
+  <link id="5">
+    <path>/home/margaridamorais</path>
+    <name>doc</name>
+    <owner>margaridamorais</owner>
+    <perm>rwxdr-x-</perm>
+    <value>/home/margaridamorais/profile</value>
+ </link>
+  <plain id="7">
+    <path>/home/brunompl</path>
+    <name>xpto</name>
+    <owner>brunompl</owner>
+    <perm>rwxdr-x-</perm>
+    <contents>/home/brunompl/app Bruno</contents>
+  </plain>
+  <app id="9">
+    <path>/home/brunompl</path>
+    <name>app</name>
+    <owner>brunompl</owner>
+    <perm>rwxd--x-</perm>
+    <method>pt.tecnico.drivedb.presentation.Hello.greet</method>
+  </app>
+  <plain id="10">
+    <path>/home/leonorclem</path>
+    <name>profile</name>
+    <owner>leonorclem</owner>
+    <perm>rwxdr-x-</perm>
+    <contents>Olá eu sou a Leonor</contents>
+  </plain>
+  <plain>
+    <path>/home/anasilva2</path>
+    <name>profile</name>
+    <owner>anasilva2</owner>
+    <perm>rwxdr-x-</perm>
+    <contents>Olá eu sou a Ana</contents>
+  </plain>
+  <plain>
+    <path>/home/diogogoncas</path>
+    <name>profile</name>
+    <owner>adiogogoncas</owner>
+    <perm>rwxdr-x-</perm>
+    <contents>Olá eu sou o Diogo</contents>
+  </plain>
+  <dir>
+    <path>/home/margaridamorais</path>
+    <name>dir</name>
+    <owner>margaridamorais</owner>
+    <perm>rw-dr---</perm>
+  </dir>
+</myDrive>
+

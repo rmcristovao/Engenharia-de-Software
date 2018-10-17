@@ -1,0 +1,132 @@
+package pt.tecnico.drivedb.domain;
+
+class Manager;
+
+class Session;
+
+class FileSystem {
+  int counter;
+}
+
+class User {
+  String username;
+  String password;
+  String name;
+  String mask;
+}
+
+class Root extends User;
+
+class File {
+  int id;
+  String name;
+  DateTime lastModified;
+  String permissions;
+}
+
+class TextFile extends File {
+  String data;
+}
+
+class App extends TextFile;
+
+class Link extends TextFile;
+
+class Directory extends File;
+
+relation DomainRootHasDriveDBApplication {
+  .pt.ist.fenixframework.DomainRoot playsRole root {
+    multiplicity 0..1;
+  }
+  Manager playsRole manager {
+    multiplicity 0..1;
+  }
+}
+
+relation ManagerContainsUsers {
+  Manager playsRole manager;
+  User playsRole users {
+    multiplicity 0..*;
+  }
+}
+
+relation ManagerContainsRoot {
+  Manager playsRole manager;
+  Root playsRole rootUser {
+    multiplicity 1;
+  }
+}
+
+relation ManagerContainsFileSystem {
+  Manager playsRole manager;
+  FileSystem playsRole fileSystem {
+    multiplicity 1;
+  }
+}
+
+relation ManagerContainsSession {
+  Manager playsRole manager;
+  Session playsRole session {
+    multiplicity 0..1;
+  }
+}
+
+relation SessionContainsUser {
+  Session playsRole session;
+  User playsRole currentUser {
+    multiplicity 1;
+  }
+}
+
+relation SessionContainsDirectory {
+  Session playsRole session;
+  Directory playsRole workingDirectory {
+    multiplicity 1;
+  }
+}
+
+relation FileSystemContainsDirectory {
+  FileSystem playsRole fileSystem;
+  Directory playsRole rootDirectory {
+    multiplicity 1;
+  }
+}
+
+relation UserContainsDirectory {
+  User playsRole user;
+  Directory playsRole homeDirectory {
+    multiplicity 1;
+  }
+}
+
+relation FileContainsUser {
+  File playsRole file;
+  User playsRole ownerUser {
+    multiplicity 1;
+  }
+}
+
+relation FileContainsDirectory {
+  File playsRole file;
+  Directory playsRole parentDirectory {
+    multiplicity 1;
+  }
+}
+
+relation LinkContainsFile {
+  Link playsRole linkedTo;
+  File playsRole file {
+    multiplicity 1;
+  }
+}
+
+relation DirectoryContainsFiles {
+  Directory playsRole directory;
+  File playsRole files {
+    multiplicity 2..*;
+  }
+}
+
+
+
+

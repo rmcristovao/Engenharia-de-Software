@@ -1,0 +1,130 @@
+package pt.tecnico.drivedb.domain;
+ 
+class Manager{
+  int counter;
+}
+
+class Session{
+   long token;
+   DateTime date;
+}
+
+class EnvironmentVar{
+	String name;
+	String path;
+}
+
+class User {
+  String username;
+  String password;
+  String name;
+  String mask;
+  String pathHome;
+}
+class Extension {
+  String name;
+}
+
+class Root extends User;
+
+class Guest extends User;
+
+class File {
+  int id;
+  String name;
+  DateTime lastModified;
+  String permissions;
+}
+
+class PlainFile extends File {
+  String data;
+}
+
+class App extends PlainFile;
+
+class Link extends PlainFile;
+
+class Dir extends File;
+
+relation DomainRootHasDriveDBApplication {
+  .pt.ist.fenixframework.DomainRoot playsRole root {
+    multiplicity 0..1;
+  }
+  Manager playsRole manager {
+    multiplicity 0..1;
+  }
+}
+
+relation UserHasExtension {
+  User playsRole user;
+  Extension playsRole extension {
+    multiplicity 0..*; 
+  }
+}
+relation ExtensionHasApp {
+  Extension playsRole ex;
+  App playsRole app {
+    multiplicity 0..1;
+  }
+ }
+
+relation SessionContainsEnvironmentVar {
+  Session playsRole session;
+  EnvironmentVar playsRole var {
+    multiplicity 0..*;
+  }
+}
+
+relation ManagerContainsUsers {
+  Manager playsRole manager;
+  User playsRole users {
+    multiplicity 0..*; 
+  }
+}
+
+relation ManagerContainsDir {
+  Manager playsRole manager;
+  Dir playsRole base {
+    multiplicity 0..1;
+  }
+}
+
+relation ManagerContainsSessions {
+  Manager playsRole manager;
+  Session playsRole session {
+    multiplicity 0..*;
+  }
+}
+
+relation SessionContainsUser {
+  Session playsRole session {
+    multiplicity 0..*;
+  }
+  User playsRole currentUser {
+    multiplicity 0..1; 
+  }
+}
+
+relation SessionContainsDir {
+  Session playsRole session;
+  Dir playsRole workingDir {
+    multiplicity 0..1; 
+  }
+}
+
+relation UserContainsFiles {
+  File playsRole files {
+    multiplicity 0..*;
+    }
+  User playsRole owner {
+    multiplicity 0..1; 
+  }
+}
+
+
+relation DirContainsFiles {
+  Dir playsRole dir;
+  File playsRole files {
+    multiplicity 0..*; 
+  }
+}

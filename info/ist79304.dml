@@ -1,0 +1,82 @@
+package pt.tecnico.proj.domain;
+
+class Manager {
+	int fileCounter;
+}
+
+class User {
+	
+	String username;
+	String password;
+	String name;
+	String mask;
+}
+
+class Root extends User; 
+
+class File {
+	
+	int id;
+	String name;
+	String data;
+	String permissions;
+}
+
+class PlainFile extends File {
+	
+	String content;
+}
+
+class Directory extends File;
+
+class Link extends PlainFile;
+
+class App extends PlainFile;
+
+relation DomainRootHasManager {
+  .pt.ist.fenixframework.DomainRoot playsRole root {
+    multiplicity 0..1;
+  }
+  Manager playsRole manager {
+    multiplicity 0..1;
+  }
+}
+
+relation ManagerContainsUsers{
+	Manager playsRole manager {
+		multiplicity 1;
+	}
+	User playsRole user {
+		multiplicity *;
+	}
+}
+
+relation ManagerContainsRoot{
+	Manager playsRole manager{
+		multiplicity 1;
+	}
+	Root playsRole root{
+		multiplicity 1;
+	}
+}
+
+relation UserContainsDirectory{
+	User playsRole user;
+	Directory playsRole directory {
+		multiplicity 1;
+	}
+}
+
+relation UserContainsFiles{
+	User playsRole user;
+	File playsRole file{
+		multiplicity *;
+	}
+}
+
+relation DirectoryContainsFiles{
+	Directory playsRole directory;
+	File playsRole file{
+		multiplicity *;
+	}
+}

@@ -1,0 +1,118 @@
+package pt.tecnico.drivedb.domain;
+
+
+class MDManager
+{
+  int contador;
+}
+
+class Users
+{
+  String name;
+  String username;
+  String password;
+  String mask;
+  String dir;
+}
+
+class Root extends Users
+{
+
+
+}
+
+class Files 
+{
+  int id;
+  String name;
+  String creator;
+  DateTime date;
+  String perms;
+
+}
+
+class TextFile extends Files
+{
+  String content;
+}
+class Dir extends Files
+{
+
+}
+class Apps extends TextFile
+{
+  String method;
+}
+class Links extends TextFile
+{
+  String path;
+
+}
+relation DomainRootHasMDManagerApplication 
+{
+  .pt.ist.fenixframework.DomainRoot playsRole root {
+    multiplicity 0..1;
+  }
+  MDManager playsRole md {
+    multiplicity 1..1;
+  }
+}
+
+relation MDManagercontainsUsers
+{
+  MDManager playsRole manager;
+  Users playsRole users
+  {
+    multiplicity *;
+  }
+}
+
+relation MDManagercontainsRoot
+{
+
+  MDManager playsRole manager;
+  Root playsRole root
+  {
+    multiplicity 1..1;
+  }
+
+}
+
+relation UsersHaveFiles
+{
+  Users playsRole user;
+  Files playsRole files
+  {
+    multiplicity *;
+  }
+}
+relation UsersContainsDir 
+{
+  Users playsRole user;
+  Dir playsRole homeDir {
+    multiplicity 1..1;
+  }
+}
+
+relation FilesHaveDir 
+{
+  Files playsRole files{
+    multiplicity 1..1;
+  }
+  Dir playsRole fileDir{
+    multiplicity 1..1;
+  }
+
+}
+
+relation RootHasAccessFiles
+{
+
+  Root playsRole rt;
+  Files playsRole fils
+  {
+    multiplicity *;
+  }
+
+}
+
